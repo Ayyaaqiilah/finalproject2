@@ -32,6 +32,8 @@ jobs:
 
   web-tests:
     runs-on: ubuntu-latest
+    env:
+      CI_HEADLESS: true
     steps:
       - uses: actions/checkout@v3
         with:
@@ -51,6 +53,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
       - name: Run Web Tests
         run: bash ./gradlew webTest
