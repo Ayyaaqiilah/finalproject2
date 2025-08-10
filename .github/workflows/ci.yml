@@ -26,12 +26,9 @@ jobs:
       - name: Run API Tests
         run: ./gradlew apiTest
 
-      - name: List API report files
-        run: ls -l build/reports/cucumber/api/
-
       - name: Upload API Test Report
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: api-test-report
           path: build/reports/cucumber/api/
@@ -76,12 +73,9 @@ jobs:
       - name: Run Web UI Tests
         run: ./gradlew webTest
 
-      - name: List Web UI report files
-        run: ls -l build/reports/cucumber/web/
-
       - name: Upload Web UI Test Report
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: web-test-report
           path: build/reports/cucumber/web/
