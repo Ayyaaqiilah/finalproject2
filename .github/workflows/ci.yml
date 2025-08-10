@@ -31,7 +31,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: api-test-report
-          path: build/reports/tests/apiTest/
+          path: |
+            build/reports/tests/apiTest/**
+            build/reports/cucumber-html-reports/**
+            build/reports/cucumber.json
 
   web-tests:
     name: Web UI Tests
@@ -78,4 +81,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: web-test-report
-          path: build/reports/tests/webTest/
+          path: |
+            build/reports/tests/webTest/**
+            build/reports/cucumber-html-reports/**
+            build/reports/cucumber.json
