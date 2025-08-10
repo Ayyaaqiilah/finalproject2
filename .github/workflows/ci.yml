@@ -24,7 +24,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Run API Tests
-        run: ./gradlew apiTest --info --stacktrace
+        run: ./gradlew apiTest
 
       - name: List API report files
         run: ls -l build/reports/cucumber/api/
@@ -74,7 +74,7 @@ jobs:
           sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Run Web UI Tests
-        run: ./gradlew webTest --info --stacktrace
+        run: ./gradlew webTest
 
       - name: List Web UI report files
         run: ls -l build/reports/cucumber/web/
