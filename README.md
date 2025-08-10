@@ -10,7 +10,43 @@
 - GitHub Actions
 
 ## Struktur
-... (cantumkan struktur yang sudah kita definisikan) ...
+src
+├── main
+│ ├── java
+│ │ └── com.example
+│ │ └── Main.java
+│ └── resources
+├── test
+│ ├── java
+│ │ ├── api
+│ │ │ ├── requests
+│ │ │ │ ├── BaseApi.java
+│ │ │ │ └── UserApi.java
+│ │ │ ├── runners
+│ │ │ │ └── ApiTestRunner.java
+│ │ │ └── steps
+│ │ │ └── ApiSteps.java
+│ │ ├── web
+│ │ │ ├── pages
+│ │ │ │ └── LoginPage.java
+│ │ │ ├── runners
+│ │ │ │ └── WebTestRunner.java
+│ │ │ ├── steps
+│ │ │ │ └── WebSteps.java
+│ │ │ └── utils
+│ │ │ └── WebDriverFactory.java
+│ └── resources
+│ └── features
+│ ├── api
+│ │ └── api.feature
+│ └── web
+│ └── login.feature
+├── build.gradle
+├── settings.gradle
+├── gradlew
+├── gradlew.bat
+├── .gitignore
+└── README.md
 
 ## Menjalankan test
 - API: `./gradlew apiTest`

@@ -10,7 +10,7 @@ public class LoginPage {
     private final By usernameField = By.id("user-name");
     private final By passwordField = By.id("password");
     private final By loginButton = By.id("login-button");
-    private final By productsTitle = By.cssSelector(".title"); // "Products" title
+    private final By productsTitle = By.cssSelector(".title");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;

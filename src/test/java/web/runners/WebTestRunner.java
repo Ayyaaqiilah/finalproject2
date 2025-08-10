@@ -21,7 +21,6 @@ public class WebTestRunner {
 
         @BeforeClass
         public static void setup() {
-                // Headless true supaya bisa jalan di GitHub Actions
                 driver = WebDriverFactory.createChrome(true);
         }
 
