@@ -24,16 +24,17 @@ jobs:
           distribution: 'temurin'
 
       - name: Run API Tests
-        run: ./gradlew apiTest
+        run: ./gradlew apiTest --info --stacktrace
+
+      - name: List API report files
+        run: ls -l build/reports/cucumber/api/
 
       - name: Upload API Test Report
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: api-test-report
-          path: |
-            build/reports/cucumber/api/**
-  
+          path: build/reports/cucumber/api/
 
   web-tests:
     name: Web UI Tests
@@ -73,13 +74,14 @@ jobs:
           sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Run Web UI Tests
-        run: ./gradlew webTest
+        run: ./gradlew webTest --info --stacktrace
+
+      - name: List Web UI report files
+        run: ls -l build/reports/cucumber/web/
 
       - name: Upload Web UI Test Report
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: web-test-report
-          path: |
-            build/reports/cucumber/web/**
-
+          path: build/reports/cucumber/web/
