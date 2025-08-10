@@ -26,6 +26,13 @@ jobs:
       - name: Run API Tests
         run: ./gradlew apiTest
 
+      - name: Upload API Test Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: api-test-report
+          path: build/reports/apiTest/
+
   web-tests:
     name: Web UI Tests
     runs-on: ubuntu-latest
@@ -65,3 +72,10 @@ jobs:
 
       - name: Run Web UI Tests
         run: ./gradlew webTest
+
+      - name: Upload Web UI Test Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: web-test-report
+          path: build/reports/webTest/
