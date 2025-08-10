@@ -6,7 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class WebDriverFactory {
-
     public static WebDriver createChrome(boolean headless) {
         WebDriverManager.chromedriver().setup();
 
@@ -14,9 +13,9 @@ public class WebDriverFactory {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--window-size=1920,1080");
+        options.addArguments("--remote-allow-origins=*");
 
         if (headless) {
-            // new headless mode works for modern chrome
             options.addArguments("--headless=new");
         }
 
