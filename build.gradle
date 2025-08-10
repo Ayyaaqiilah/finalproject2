@@ -40,46 +40,46 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.18.0'
 }
 
-tasks.register('apiTest', Test) {
-    useJUnit()
-    systemProperty "cucumber.filter.tags", "@api"
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
-    outputs.upToDateWhen { false }
-}
-
-tasks.register('webTest', Test) {
-    useJUnit()
-    systemProperty "cucumber.filter.tags", "@web"
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
-    outputs.upToDateWhen { false }
-}
-
-test {
-    useJUnit()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
-}
-
 configurations {
     cucumberRuntime {
         extendsFrom testImplementation
     }
 }
 
-// Task untuk generate report HTML dan JSON
-tasks.register('cucumberReport', JavaExec) {
+// Task untuk menjalankan API test
+tasks.register('apiTest', JavaExec) {
     mainClass = 'io.cucumber.core.cli.Main'
     classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
     args = [
             '--plugin', 'pretty',
-            '--plugin', 'html:build/reports/cucumber-report.html',
-            '--plugin', 'json:build/reports/cucumber-report.json',
-            '--glue', 'steps',
+            '--plugin', 'html:build/reports/cucumber/api/index.html',
+            '--plugin', 'json:build/reports/cucumber/api/report.json',
+            '--glue', 'api.steps',
+            '--tags', '@api',
             'src/test/resources/features'
     ]
+    outputs.upToDateWhen { false }
+}
+
+// Task untuk menjalankan Web UI test
+tasks.register('webTest', JavaExec) {
+    mainClass = 'io.cucumber.core.cli.Main'
+    classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+    args = [
+            '--plugin', 'pretty',
+            '--plugin', 'html:build/reports/cucumber/web/index.html',
+            '--plugin', 'json:build/reports/cucumber/web/report.json',
+            '--glue', 'web.steps',
+            '--tags', '@web',
+            'src/test/resources/features'
+    ]
+    outputs.upToDateWhen { false }
+}
+
+// Task test default (menjalankan semua test)
+test {
+    useJUnit()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }

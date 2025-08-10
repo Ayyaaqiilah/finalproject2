@@ -32,9 +32,8 @@ jobs:
         with:
           name: api-test-report
           path: |
-            build/reports/tests/apiTest/**
-            build/reports/cucumber-html-reports/**
-            build/reports/cucumber.json
+            build/reports/cucumber/api/**
+  
 
   web-tests:
     name: Web UI Tests
@@ -82,6 +81,5 @@ jobs:
         with:
           name: web-test-report
           path: |
-            build/reports/tests/webTest/**
-            build/reports/cucumber-html-reports/**
-            build/reports/cucumber.json
+            build/reports/cucumber/web/**
+
